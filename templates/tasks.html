@@ -1,0 +1,31 @@
+<!-- This view is responsible for displaying all tasks in selected list -->
+<ion-view cache-view="false" view-title="{{data.lists[data.index].title}}">
+  <ion-content>
+    <!-- Meesage which is shown when the list has no tasks associated -->
+    <h3 class="error-message" ng-show="isEmpty()">This list is empty!</h3>
+      
+    <!-- The following style for ion-item with checkboxes was adapted from:
+    https://forum.ionicframework.com/t/ion-item-with-checkbox-and-icon-on-item-icon-right-icons-in-ion-option/5234/3 -->
+    <ion-list>
+      <ion-item class="item-icon-right" ng-repeat="task in data.lists[data.index].tasks">
+        <div class="item-checkbox">
+          <label class="checkbox checkbox-balanced">
+            <input type="checkbox" ng-model="task.completed">
+          </label>
+          
+          <span>{{task.title}}</span>
+        </div>
+          
+        <!-- Delete button -->
+        <ion-option-button class="button-assertive ion-trash-b" ng-click="deleteTask($index)">
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+  <!-- Add button for new task -->
+  <div class="fixed-outside">
+    <a class="button button-circle button-energized icon ion-plus" href="#/app/home/newTask">
+    </a>
+  </div>
+</ion-view>
